@@ -1,0 +1,23 @@
+{% extends "test1/base.html" %}
+{% block title %}
+{%endblock %}
+{% block content %}
+{% for home in homes %}
+<div class="row">
+<div class="col-sm-3">
+<img src="{{ home.image.url }}" class="image-fluid" alt="Mon image" />
+</div>
+<div class="col-sm-3">
+<ul>
+<li>{{ home.maison.emplacement }}</li>
+<li>{{ home.nombre_de_personne }}</li>
+<li>{{ home.prix }}</li>
+<li>{{ home.nombre_de_place_restant }}</li>
+</ul>
+</div>
+</div>
+{% empty %}
+<p class="empty">Pas de chambre trouver.</p>
+{% endfor %}
+<p><a onclick="window.history.back()" class="float-left">prev</a>     <a href="{{next}}" class="float-right">next</a></p>
+{%endblock %}

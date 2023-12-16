@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="with=device-width,initial-scale=1" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="{% static "test1/css/bootstrap.min.css" %}">
+
+<!-- jQuery library -->
+<script src="{% static "test1/js/jquery.slim.min.js" %}"></script>
+
+<!-- Popper JS -->
+<script src="{% static "test1/js/popper.min.js" %}"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="{% static "test1/js/bootstrap.bundle.min.js" %}"></script>
+<script>
+$(document).ready(function(){
+
+  $("form.searchform").hide()
+$("#search").click(function() { $("form").toggle()})
+
+});
+</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<title>
+{% block title %}
+{%endblock %}
+</title>
+</head>
+<body>
+<nav class="navbar">
+{% block nav %}
+<div class="dropdown d-md-none d-lg-none d-xl-none d-xxl-none">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    menu
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Link 1</a>
+    <a class="dropdown-item" href="#">Link 2</a>
+    <a class="dropdown-item" href="#">Link 3</a>
+  </div>
+</div>
+<ul class="navbar-nav navbar-expand-sm d-none d-md-flex">
+<li class="nav-item"><a href="/" class="nav-link ">Accueil</a></li>
+<li class="nav-item"><a href="/blog/" class="nav-link ">Blog</a></li>
+<li class="nav-item"><a href="/contact/" class="nav-link">Contact</a></li>
+</ul>
+{% endblock %}
+<i class="material-icons float-right" id="search">search</i>
+</nav>
+<form method="get" enctype="multipart/form-data" action="{% url "homes_liste" %}" class=searchform>
+{{ search_form.as_p }}
+<input type="submit" value="rechercher"/>
+</form>
+<div class="container-fluid">
+{% block content %}
+{% endblock %}
+</div>
+<footer>
+{% block footer %}
+{% endblock %}
+</footer>
+<script>
+</script>
+</body>
+</html>
